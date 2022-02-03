@@ -1,0 +1,2 @@
+IF you want to run the script automatically , for example every night . 
+you should use cron in linux and set time for your script .
