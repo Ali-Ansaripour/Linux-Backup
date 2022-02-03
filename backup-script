@@ -1,0 +1,22 @@
+#! /bin/bash
+# Ali Ansaripour
+
+
+DATE=$(date +%d-%m-%Y)
+BACKUP_DIR="/backup" #Backup file save in this path
+all_user=$($sudo more /etc/passwd | cut -d: -f1) #Name of all user
+
+#To create a new directory in the backup directory location
+mkdir -p $BACKUP_DIR/$DATE
+
+#To backup user's home directory
+for user in $all_user
+do
+echo " Start "
+echo " Wait until Terminal shows -Finished- for you "
+home=`eval echo ~$user`
+tar -zcvpf $BACKUP_DIR/$DATE/$user-$DATE.tar.gz $home  #Make Gzip file
+done
+echo " Finished "
+echo "You can see the backup files in : /backup "
+exit 0
